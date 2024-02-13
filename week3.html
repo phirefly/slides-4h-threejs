@@ -54,17 +54,25 @@ hello2('4H students from function expression');
 hello3('4H students from arrow functions');
 </code></pre>
 					---
-					## Position: x, y, and z
+					## Camera Position: x, y, and z
 					- z: 2, 5, 25, 50, -1
 					- x: 1, -1
 					- y: 1, -1
 					---
-					## .autoRotate
-<pre><code data-line-numbers>
-camera.position.z = 5;
+					## AxesHelper
+<pre><code data-line-numbers="2">const axesHelper = new THREE.AxesHelper(2)
+scene.add(axesHelper)
 </code></pre>
 					---
-					## Cameras: Perspective and Orthographic
+					## Scale
+<pre><code data-line-numbers>cubeMesh.scale.x = 2;
+cubeMesh.scale.y = .5;
+cubeMesh.scale.z = .5;
+</code></pre>
+					---
+					## Scale in one line
+<pre><code data-line-numbers>cubeMesh.scale.set(2, 0.5, 0.5);
+</code></pre>
 					---
 					## OrbitControls
 <pre><code data-line-numbers="2">import * as THREE from "three";
@@ -72,12 +80,13 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 </code></pre>
 					---
 					## .autoRotate
+					Hint: camera and canvas need to be defined
 <pre><code data-line-numbers>const controls = new OrbitControls(camera, canvas);
 controls.autoRotate = true;
 </code></pre>
 					---
 					## antialiasing
-<pre><code data-line-numbers="3-6">const canvas = document.querySelector('canvas.threejs-canvas');
+<pre><code data-line-numbers>const canvas = document.querySelector('canvas.threejs-canvas');
 
 const renderer = new THREE.WebGLRenderer({
 	canvas: canvas,
@@ -87,6 +96,7 @@ const renderer = new THREE.WebGLRenderer({
 					---
 					## The Render Loop
 					- window.requestAnimationFrame
+					  https://bit.ly/3uD2eO4
 
 <pre><code data-line-numbers>const renderloop = () => {
   controls.update();
@@ -98,20 +108,31 @@ renderloop();
 </code></pre>
 					---
 					## .enableDamping
+					https://bit.ly/3wdANLt
 					---
 					## .update (within the animation loop)
+					https://bit.ly/3T03SD6
 					---
-					## Starter file
-<pre><code data-line-numbers="5">import * as THREE from "three";
-import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+					## Groups
+<pre><code data-line-numbers>const group = new THREE.Group();
+scene.add(group);
+
+group.add(cubeMesh);
+
+// Figure out how to add a second cube
+cubeMesh2.position.x = -2;
+group.add(cubeMesh2);
+
+group.scale.x = 2;
+group.scale.y = 5;
 </code></pre>
 					---
 					## Challenges
-					- Render three cubes on the screen at different locations. Choose x,y,or z axis
-					- Use the greensock animation library to animate the cube getting bigger and smaller
-					- Pulsate the animation speed of the cube rotating
+					- Render three objects on the screen at different locations. Choose x,y,or z axis
+					- Make a cube auto rotate and change the autoRotateSpeed to a faster speed than the default (2.0)
 					---
 					## Next week
+					- Shaders
 					- Blender
 					---
 					## Reflection
