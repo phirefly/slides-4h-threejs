@@ -19,16 +19,97 @@
 				<section data-markdown>
 				  <textarea data-template>
 					## This Week
-Animation
+- Position
+- Scaling
+- Rotation
+- Animation
 					---
-					## Testing
+					## Function
+					Functions as you learned them originally
+
+<pre><code data-line-numbers>function hello(name) {
+	console.log('Hello, ' + name);
+}
+
+hello('4H students');
+</code></pre>
 					---
-					## Testing
+					## Function Expressions
+					An expression assigned to a variable
+
+<pre><code data-line-numbers="1">const hello2 = function (name) {
+	console.log('Hello, ' + name);
+}
+
+hello2('4H students from function expression');
+</code></pre>
+					---
+					## Arrow functions
+					`function` keyword is removed and `=>` is added before the curly braces
+
+<pre><code data-line-numbers="1">const hello3 = (name) => {
+	console.log('Hello, ' + name);
+}
+
+hello3('4H students from arrow functions');
+</code></pre>
+					---
+					## Position: x, y, and z
+					- z: 2, 5, 25, 50, -1
+					- x: 1, -1
+					- y: 1, -1
+					---
+					## .autoRotate
+<pre><code data-line-numbers>
+camera.position.z = 5;
+</code></pre>
+					---
+					## Cameras: Perspective and Orthographic
+					---
+					## OrbitControls
+<pre><code data-line-numbers="2">import * as THREE from "three";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+</code></pre>
+					---
+					## .autoRotate
+<pre><code data-line-numbers>const controls = new OrbitControls(camera, canvas);
+controls.autoRotate = true;
+</code></pre>
+					---
+					## antialiasing
+<pre><code data-line-numbers="3-6">const canvas = document.querySelector('canvas.threejs-canvas');
+
+const renderer = new THREE.WebGLRenderer({
+	canvas: canvas,
+	antialias: true
+});
+</code></pre>
+					---
+					## The Render Loop
+					- window.requestAnimationFrame
+
+<pre><code data-line-numbers>const renderloop = () => {
+  controls.update();
+  renderer.render(scene, camera);
+  window.requestAnimationFrame(renderloop);
+};
+
+renderloop();
+</code></pre>
+					---
+					## .enableDamping
+					---
+					## .update (within the animation loop)
 					---
 					## Starter file
 <pre><code data-line-numbers="5">import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 </code></pre>
+					---
+					## Challenges
+					- Render three cubes on the screen at different locations. Choose x,y,or z axis
+					- Use the greensock animation library to animate the cube getting bigger and smaller
+					- Pulsate the animation speed of the cube rotating
 					---
 					## Next week
 					- Blender
