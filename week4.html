@@ -19,19 +19,108 @@
 				<section data-markdown>
 				  <textarea data-template>
 					## This Week
-Blender
+					- Basic lighting
+					- Materials
+					- Texture
 					---
-					## Testing
-					---
-					## Testing
-					---
-					## Starter file
-<pre><code data-line-numbers="5">import * as THREE from "three";
-import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+					## Basic Lighting
+					Adding ambient light
+<pre><code data-line-numbers>const light = new THREE.PointLight(0xffffff, 0.5);
+scene.add(light);
+
+const pointLight = new THREE.PointLight(0xffffff, 1);
+pointLight.position.set(2,2,2);
+scene.add(pointLight);
+
 </code></pre>
 					---
+					## Materials
+					- A material defines the optical properties of an object: color, dull vs shiny
+					---
+					## Types of Materials
+					- Non Environment Reacting Materials: Mesh Basic -> Mesh Matcap -> Mesh Depth
+					- Environment Reacting Materials: Mesh Lambert -> Mesh Phong -> Mesh Standard -> Mesh Physical
+					---
+					## Exploring Materials Options with Torus Knot
+<pre><code data-line-numbers>const torusKnotGeometry = new THREE.TorusKnotGeometry(0.5, 0.15, 100, 16)
+const mesh2 = new THREE.Mesh(torusKnotGeometry, material)
+mesh2.position.x = 1.5
+</code></pre>
+					---
+					## Shininess
+<pre><code data-line-numbers>
+// Replace existing material
+const material = new THREE.MeshPhongMaterial();
+material.shininess = 90;
+</code></pre>
+					---
+					## Using the Options Slider
+					- Adding Tweakpane
+<pre><code data-line-numbers>
+const pane = new Pane();
+
+pane.addInput(material, 'shininess', {
+	min: 0,
+	max: 100,
+	step 1
+})
+</code></pre>
+					---
+					## Mesh Standard Material
+<pre><code data-line-numbers>
+const material = new THREE.MeshStandardMaterial()
+material.color = new THREE.Color('blue')
+
+pane.addInput(material, 'metalness', {
+	min: 0,
+	max: 1,
+	step: 0.01
+})
+
+pane.addInput(material, 'roughness', {
+	min: 0,
+	max: 1,
+	step: 0.01
+})
+</code></pre>
+					---
+					## Mesh Physical Material
+<pre><code data-line-numbers>
+// MeshStandardMaterial is substitutable with MeshPhysicalMaterial
+const material = new THREE.MeshPhysicalMaterial()
+material.color = new THREE.Color('blue')
+
+// Add these to the pane
+pane.addInput(material, 'reflectivity', {
+	min: 0,
+	max: 1,
+	step: 0.01
+})
+
+pane.addInput(material, 'clearCoat', {
+	min: 0,
+	max: 1,
+	step: 0.01
+})
+</code></pre>
+					---
+					## Animate multiple objects for fun
+					(TBD)
+					---
+					## Texture
+					An image or color applied to material to give it more detail.
+					(LEFT OFF IMG_0663.PNG)
+					---
+					## Free PBR Maps
+					---
+					## Importing a Texture
+					---
+					## Repeating Textures
+					---
 					## Next week
-					- Tools and Techniques
+					- Basic interactivity
+					- Blender and 3D Models
+					- Planning a Project
 					---
 					## Reflection
 					Take 3 minutes to reflect on what you learned today
